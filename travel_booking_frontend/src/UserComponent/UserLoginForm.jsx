@@ -2,6 +2,9 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config";
+
+
 
 const UserLoginForm = () => {
   let navigate = useNavigate();
@@ -17,7 +20,8 @@ const UserLoginForm = () => {
   };
 
   const loginAction = (e) => {
-    fetch("http://localhost:8080/api/user/login", {
+    fetch(`${BACKEND_URL}/api/user/login`, 
+      {
       method: "POST",
       headers: {
         Accept: "application/json",

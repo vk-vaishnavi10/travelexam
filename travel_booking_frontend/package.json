@@ -1,4 +1,6 @@
 {
+  "homepage": "/ecommerce",
+
   "name": "tours-and-travels-frontend",
   "version": "0.1.0",
   "private": true,

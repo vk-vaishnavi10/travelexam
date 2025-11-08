@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+const BACKEND_URL = "http://localhost:30083";
+
 
 const UserRegister = () => {
   const navigate = useNavigate();
@@ -19,12 +21,13 @@ const UserRegister = () => {
   });
 
   useEffect(() => {
-    if (document.URL.indexOf("customer") != -1) {
-      user.role = "Customer";
-    } else if (document.URL.indexOf("tour-guide") != -1) {
-      user.role = "Tour Guide";
+    if (document.URL.includes("customer")) {
+      setUser((prev) => ({ ...prev, role: "Customer" }));
+    } else if (document.URL.includes("tour-guide")) {
+      setUser((prev) => ({ ...prev, role: "Tour Guide" }));
     }
   }, []);
+  
 
   const handleUserInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -35,7 +38,10 @@ const UserRegister = () => {
 
     let jwtToken;
 
-    fetch("http://localhost:8080/api/user/register", {
+    fetch(`${BACKEND_URL}/api/user/register`, 
+
+
+      {
       method: "POST",
       headers: {
         Accept: "application/json",
